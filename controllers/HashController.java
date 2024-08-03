@@ -9,6 +9,7 @@ import com.hash.classes.Player;
 
 public class HashController {
     private List<Hash> hashs = new ArrayList<>();
+
     private List<Player> players = new ArrayList<>();
 
     Random random = new Random();
@@ -26,6 +27,7 @@ public class HashController {
     public void putPlayer(Player player ){
         players.add(player);
     }
+
     public boolean isMarked(int index){
         if(hashs.get(index).getSinal() != null){
             return true;
@@ -165,17 +167,15 @@ public class HashController {
                    
                     return true;
                 }
-            
-            
-           
-            //return false;
-            //System.out.println("checando " + hash.getSinal());
-        
         return false;
     }
 
     public void deleteAll(){
-        hashs.clear();
+        for (Hash hash : hashs) {
+            hash.setSinal(null);
+            hash.setChecked(false);
+        }
+        //hashs.clear();
     }
 
     public Player findPlayer(String signal){
