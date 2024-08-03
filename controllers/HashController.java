@@ -64,13 +64,14 @@ public class HashController {
 
 
     public boolean checkWinner(){
-            for(int x =0; x < hashs.size() ; x++){
+         
                 if(hashs.get(1).getSinal() == hashs.get(2).getSinal() && 
                 hashs.get(1).getSinal() == hashs.get(3).getSinal() 
                 && hashs.get(2).getSinal() == hashs.get(3).getSinal()){
                     String signal = hashs.get(1).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -81,7 +82,8 @@ public class HashController {
                 && hashs.get(5).getSinal() == hashs.get(6).getSinal()){
                     String signal = hashs.get(4).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -92,7 +94,8 @@ public class HashController {
                 && hashs.get(8).getSinal() == hashs.get(9).getSinal()){
                     String signal = hashs.get(7).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -105,7 +108,8 @@ public class HashController {
                 && hashs.get(4).getSinal() == hashs.get(7).getSinal()){
                     String signal = hashs.get(1).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -116,7 +120,8 @@ public class HashController {
                 && hashs.get(5).getSinal() == hashs.get(8).getSinal()){
                     String signal = hashs.get(2).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -127,7 +132,8 @@ public class HashController {
                 && hashs.get(6).getSinal() == hashs.get(9).getSinal()){
                     String signal = hashs.get(3).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -142,7 +148,8 @@ public class HashController {
                 && hashs.get(5).getSinal() == hashs.get(9).getSinal()){
                     String signal = hashs.get(1).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
@@ -153,12 +160,13 @@ public class HashController {
                 && hashs.get(5).getSinal() == hashs.get(7).getSinal()){
                     String signal = hashs.get(3).getSinal();
 
-                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                    Player play = findPlayer(signal);
+                    System.out.println(play.getName()+ " VOCE GANHOU ");
                    
                     return true;
                 }
-               
-            }
+            
+            
            
             //return false;
             //System.out.println("checando " + hash.getSinal());
@@ -171,6 +179,11 @@ public class HashController {
     }
 
     public Player findPlayer(String signal){
+        for (Player player : players) {
+            if(signal == player.getSinal()){
+                return player;
+            }
+        }
         return null;
     }
 }

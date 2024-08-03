@@ -13,9 +13,7 @@ public class HashMain {
     private static boolean check = false;
 
     public static void main(String[] args) {
-
         begin();
-
     }
 
     private static void begin() {
@@ -86,6 +84,7 @@ public class HashMain {
             if (round > 4) {
                 boolean champiom = hashContrller.checkWinner();
                 if (champiom == true) {
+                    System.out.println("\n");
                     confirm();
 
                 }

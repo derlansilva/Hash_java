@@ -21,7 +21,7 @@ public class Hash {
     @Override
     public String toString() {
         
-        return (isChecked ? "[ "+ this.sinal +" ]" : "[  ]");
+        return (isChecked ? "[ "+ this.sinal +" ]" : "[   ]");
        
     }
 
