@@ -64,10 +64,100 @@ public class HashController {
 
 
     public boolean checkWinner(){
-            for(int x =0; x <3 ; x++){
-                for (Hash hash : hashs) {
-                    
+            for(int x =0; x < hashs.size() ; x++){
+                if(hashs.get(1).getSinal() == hashs.get(2).getSinal() && 
+                hashs.get(1).getSinal() == hashs.get(3).getSinal() 
+                && hashs.get(2).getSinal() == hashs.get(3).getSinal()){
+                    String signal = hashs.get(1).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
                 }
+
+                // SE A SEGUNDA LINHA ESTIVER PREENCHIDA DO 4 AO 6
+                if(hashs.get(4).getSinal() == hashs.get(5).getSinal() && 
+                hashs.get(4).getSinal() == hashs.get(6).getSinal() 
+                && hashs.get(5).getSinal() == hashs.get(6).getSinal()){
+                    String signal = hashs.get(4).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+
+                // SE A SEGUNDA LINHA ESTIVER PREENCHIDA DO 7 AO 9
+                if(hashs.get(7).getSinal() == hashs.get(8).getSinal() && 
+                hashs.get(7).getSinal() == hashs.get(9).getSinal() 
+                && hashs.get(8).getSinal() == hashs.get(9).getSinal()){
+                    String signal = hashs.get(7).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+                
+
+                // VERIFICAR VENCEDORES DAS LINHAS LATERAIS
+                // VENCEDOR DAS LINHAS 1 , 4 , 7
+                if(hashs.get(1).getSinal() == hashs.get(4).getSinal() && 
+                hashs.get(1).getSinal() == hashs.get(7).getSinal() 
+                && hashs.get(4).getSinal() == hashs.get(7).getSinal()){
+                    String signal = hashs.get(1).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+
+                //VENCEDOR DAS LINHAS 2 , 5 , 8
+                if(hashs.get(2).getSinal() == hashs.get(5).getSinal() && 
+                hashs.get(2).getSinal() == hashs.get(8).getSinal() 
+                && hashs.get(5).getSinal() == hashs.get(8).getSinal()){
+                    String signal = hashs.get(2).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+                //VENCEDOR DAS LINHAS 3 , 6 , 9
+
+                if(hashs.get(3).getSinal() == hashs.get(6).getSinal() && 
+                hashs.get(3).getSinal() == hashs.get(9).getSinal() 
+                && hashs.get(6).getSinal() == hashs.get(9).getSinal()){
+                    String signal = hashs.get(3).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+
+
+                // AGORA LOGICA PARA VERIFICAR VENCEDORES NAS DIAGONAIS
+
+
+                //VENCEDOR NAS LINHAS 1 , 5 , 9
+                if(hashs.get(1).getSinal() == hashs.get(5).getSinal() && 
+                hashs.get(1).getSinal() == hashs.get(9).getSinal() 
+                && hashs.get(5).getSinal() == hashs.get(9).getSinal()){
+                    String signal = hashs.get(1).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+                //VENCEDOR DAS LINHAS 3, 5 , 7
+
+                if(hashs.get(3).getSinal() == hashs.get(5).getSinal() && 
+                hashs.get(3).getSinal() == hashs.get(7).getSinal() 
+                && hashs.get(5).getSinal() == hashs.get(7).getSinal()){
+                    String signal = hashs.get(3).getSinal();
+
+                    System.out.println("TEMOS UM CAMPEÃO O MESMO DO SIGNAL " + signal);
+                   
+                    return true;
+                }
+               
             }
            
             //return false;
@@ -78,5 +168,9 @@ public class HashController {
 
     public void deleteAll(){
         hashs.clear();
+    }
+
+    public Player findPlayer(String signal){
+        return null;
     }
 }

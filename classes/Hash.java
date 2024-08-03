@@ -5,6 +5,7 @@ public class Hash {
 
     private boolean isChecked = false;
     private String sinal ;
+    int count = 1;
 
     public void setChecked(boolean isChecked){
         this.isChecked = isChecked;
@@ -19,8 +20,9 @@ public class Hash {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return (isChecked ? "[ "+ this.sinal +" ]" : "[   ]");
+        
+        return (isChecked ? "[ "+ this.sinal +" ]" : "[  ]");
+       
     }
 
 }

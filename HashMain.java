@@ -1,9 +1,7 @@
 package com.hash;
 
-import java.util.Random;
 import java.util.Scanner;
 
-import com.hash.classes.Hash;
 import com.hash.classes.Player;
 import com.hash.controllers.HashController;
 
@@ -12,14 +10,15 @@ public class HashMain {
     private static Scanner scanner = new Scanner(System.in);
     private static String[] player = new String[2];
     private static String mensage = " VOCE COMEÇA";
+    private static boolean check = false;
 
     public static void main(String[] args) {
 
         begin();
-       
+
     }
 
-    private static void begin(){
+    private static void begin() {
         System.out.print("JOGADOR 1:");
         String name = scanner.nextLine();
         Player play1 = new Player(name);
@@ -50,35 +49,24 @@ public class HashMain {
         int round = 0;
 
         System.out.println("VAMOS COMERÇAR A PARTIDA");
-        boolean check = false;
 
         while (!check) {
             if (round == 9) {
                 System.out.println("_________________________________");
-                
-                System.out.println("FIM DE JOGO NINGUEM VENCEU\n");
-                hashContrller.priHash();
-                System.out.println("\n");
-                System.out.println("DESEJA RECOMEÇAR A PARTIDA?");
-                System.out.println("[ 1 ] = SIM");
-                System.out.println("[ 0 ] = NÃO");
-                int chooise = scanner.nextInt();
 
-                if(chooise == 1){
-                    hashContrller.deleteAll();
-                    start();
-                }
-                check = true;
-                
+                System.out.println("FIM DE JOGO NINGUEM VENCEU\n");
+
+                confirm();
+
             }
             String namePlayer;
             if (round % 2 != 0) {
                 System.out.println("________________________________");
-                System.out.println(player[0] + mensage );
+                System.out.println(player[0] + mensage);
                 namePlayer = player[0];
                 mensage = " SUA VEZ";
             } else {
-                System.out.println(player[1] +mensage);
+                System.out.println(player[1] + mensage);
                 namePlayer = player[1];
                 mensage = " SUA VEZ";
             }
@@ -87,16 +75,37 @@ public class HashMain {
             int position = scanner.nextInt();
 
             boolean confir = hashContrller.isMarked(position);
-            if(confir == false){
+            if (confir == false) {
                 hashContrller.check(position, namePlayer);
                 round++;
-            }else{
+            } else {
                 System.out.println("POSIÇÃO JA ESCOLHIDA\n");
                 mensage = " ESCOLHA OUTRA POSIÇÃO";
             }
 
-            hashContrller.checkWinner();
+            if (round > 4) {
+                boolean champiom = hashContrller.checkWinner();
+                if (champiom == true) {
+                    confirm();
+
+                }
+            }
         }
+    }
+
+    private static void confirm() {
+        hashContrller.priHash();
+        System.out.println("\n");
+        System.out.println("DESEJA RECOMEÇAR A PARTIDA?");
+        System.out.println("[ 1 ] = SIM");
+        System.out.println("[ 0 ] = NÃO");
+        int chooise = scanner.nextInt();
+
+        if (chooise == 1) {
+            hashContrller.deleteAll();
+            start();
+        }
+        check = true;
     }
 
 }
