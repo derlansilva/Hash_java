@@ -16,7 +16,7 @@ public class HashController {
 
     public HashController(){
         putPositions();
-        //checkWinner();
+        
     }
 
     public Player choosePlayer(){
@@ -24,6 +24,7 @@ public class HashController {
         return players.get(index);
         
     }
+
     public void putPlayer(Player player ){
         players.add(player);
     }
@@ -64,42 +65,35 @@ public class HashController {
         hashs.get(index).setChecked(true);
     }
 
-
     public boolean checkWinner(){
          
                 if(hashs.get(1).getSinal() == hashs.get(2).getSinal() && 
                 hashs.get(1).getSinal() == hashs.get(3).getSinal() 
                 && hashs.get(2).getSinal() == hashs.get(3).getSinal()){
-                    String signal = hashs.get(1).getSinal();
-
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+            
+                    boolean result = getchampion(1);
+                    return result;
+                    
                 }
 
                 // SE A SEGUNDA LINHA ESTIVER PREENCHIDA DO 4 AO 6
                 if(hashs.get(4).getSinal() == hashs.get(5).getSinal() && 
                 hashs.get(4).getSinal() == hashs.get(6).getSinal() 
                 && hashs.get(5).getSinal() == hashs.get(6).getSinal()){
-                    String signal = hashs.get(4).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(4);
+                    return result;
+
                 }
 
                 // SE A SEGUNDA LINHA ESTIVER PREENCHIDA DO 7 AO 9
                 if(hashs.get(7).getSinal() == hashs.get(8).getSinal() && 
                 hashs.get(7).getSinal() == hashs.get(9).getSinal() 
                 && hashs.get(8).getSinal() == hashs.get(9).getSinal()){
-                    String signal = hashs.get(7).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(7);
+                    return result;
+
                 }
                 
 
@@ -108,36 +102,30 @@ public class HashController {
                 if(hashs.get(1).getSinal() == hashs.get(4).getSinal() && 
                 hashs.get(1).getSinal() == hashs.get(7).getSinal() 
                 && hashs.get(4).getSinal() == hashs.get(7).getSinal()){
-                    String signal = hashs.get(1).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(1);
+                    return result;
+
                 }
 
                 //VENCEDOR DAS LINHAS 2 , 5 , 8
                 if(hashs.get(2).getSinal() == hashs.get(5).getSinal() && 
                 hashs.get(2).getSinal() == hashs.get(8).getSinal() 
                 && hashs.get(5).getSinal() == hashs.get(8).getSinal()){
-                    String signal = hashs.get(2).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(2);
+                    return result;
+
                 }
                 //VENCEDOR DAS LINHAS 3 , 6 , 9
 
                 if(hashs.get(3).getSinal() == hashs.get(6).getSinal() && 
                 hashs.get(3).getSinal() == hashs.get(9).getSinal() 
                 && hashs.get(6).getSinal() == hashs.get(9).getSinal()){
-                    String signal = hashs.get(3).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(3);
+                    return result;
+
                 }
 
 
@@ -148,26 +136,35 @@ public class HashController {
                 if(hashs.get(1).getSinal() == hashs.get(5).getSinal() && 
                 hashs.get(1).getSinal() == hashs.get(9).getSinal() 
                 && hashs.get(5).getSinal() == hashs.get(9).getSinal()){
-                    String signal = hashs.get(1).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(1);
+                    return result;
+
                 }
                 //VENCEDOR DAS LINHAS 3, 5 , 7
 
                 if(hashs.get(3).getSinal() == hashs.get(5).getSinal() && 
                 hashs.get(3).getSinal() == hashs.get(7).getSinal() 
                 && hashs.get(5).getSinal() == hashs.get(7).getSinal()){
-                    String signal = hashs.get(3).getSinal();
 
-                    Player play = findPlayer(signal);
-                    System.out.println(play.getName()+ " VOCE GANHOU ");
-                   
-                    return true;
+                    boolean result = getchampion(3);
+                    return result;
+                    
                 }
         return false;
+    }
+
+    public boolean getchampion(int index){
+
+        String signal = hashs.get(index).getSinal();
+
+        Player play = findPlayer(signal);
+        System.out.println(play);
+        play.setVictorys(+1);
+        System.out.println("________________________________");
+        System.out.println(play.getName()+ " VOCE GANHOU ");
+       
+        return true;
     }
 
     public void deleteAll(){
@@ -175,7 +172,6 @@ public class HashController {
             hash.setSinal(null);
             hash.setChecked(false);
         }
-        //hashs.clear();
     }
 
     public Player findPlayer(String signal){

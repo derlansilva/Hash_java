@@ -3,6 +3,7 @@ package com.hash.classes;
 public class Player {
     private String name ;
     private String sinal ;
+    private int victorys;
 
     public Player(String name ){
         this.name = name;
@@ -24,6 +25,12 @@ public class Player {
         this.sinal = sinal;
     }
 
+    public int getVictorys() {
+        return victorys;
+    }
+    public void setVictorys(int victorys) {
+        this.victorys = victorys;
+    }
 
     @Override
     public String toString() {
