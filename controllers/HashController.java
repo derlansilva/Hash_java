@@ -149,7 +149,7 @@ public class HashController {
 
                     boolean result = getchampion(3);
                     return result;
-                    
+
                 }
         return false;
     }
@@ -160,8 +160,9 @@ public class HashController {
 
         Player play = findPlayer(signal);
         System.out.println(play);
-        play.setVictorys(+1);
+        
         System.out.println("________________________________");
+        
         System.out.println(play.getName()+ " VOCE GANHOU ");
        
         return true;
@@ -177,9 +178,16 @@ public class HashController {
     public Player findPlayer(String signal){
         for (Player player : players) {
             if(signal == player.getSinal()){
+                player.setVictorys(+1);
                 return player;
             }
         }
         return null;
+    }
+
+    public void scoreboard(){
+        System.out.println("PLACAR");
+        System.out.println(players.get(0).getName() + "  - "+ players.get(0).getVictorys() );
+        System.out.println(players.get(1).getName() + "  - "+ players.get(1).getVictorys() );
     }
 }

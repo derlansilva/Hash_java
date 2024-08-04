@@ -12,7 +12,7 @@ public class HashMain {
     private static String mensage = " VOCE COMEÇA";
     private static boolean check = false;
 
-    private static String player1 ;
+    private static String player1;
     private static String player2;
 
     public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class HashMain {
 
     }
 
-    private static  void chooisePlayer(){
+    private static void chooisePlayer() {
         String p = hashContrller.choosePlayer().getName();
 
         if (p == player1) {
@@ -49,7 +49,6 @@ public class HashMain {
 
         start();
     }
-
 
     private static void start() {
         int round = 0;
@@ -77,15 +76,15 @@ public class HashMain {
                 namePlayer = player[1];
                 mensage = " SUA VEZ";
             }
-           
+
             hashContrller.priHash();
             System.out.print("ESCOLHA UMA POSIÇÃO  ");
             int position = scanner.nextInt();
-            if(position > 9){
+            if (position > 9) {
                 System.out.println("________________________________");
                 System.out.println("SOMENTE VALORES ENTRE 1 E 9");
                 mensage = " ESCOLHA OUTRO VALOR ENTRE 1 E 9";
-            }else{
+            } else {
                 boolean confir = hashContrller.isMarked(position);
                 if (confir == false) {
                     hashContrller.check(position, namePlayer);
@@ -94,37 +93,57 @@ public class HashMain {
                     System.out.println("POSIÇÃO JA ESCOLHIDA\n");
                     mensage = " ESCOLHA OUTRA POSIÇÃO";
                 }
-    
+
                 if (round > 4) {
                     boolean champiom = hashContrller.checkWinner();
                     if (champiom == true) {
                         System.out.println("\n");
+                        hashContrller.priHash();
                         confirm();
-    
+
                     }
                 }
             }
 
-           
         }
     }
 
     private static void confirm() {
-        hashContrller.priHash();
+        
         System.out.println("\n");
         System.out.println("________________________________");
         System.out.println("DESEJA RECOMEÇAR A PARTIDA?");
         System.out.println("[ 1 ] = SIM");
         System.out.println("[ 0 ] = NÃO");
+        System.out.println("[ 2 ] = VISUALIZAR PLACAR");
         int chooise = scanner.nextInt();
 
-        if (chooise == 1) {
-            hashContrller.deleteAll();
-            mensage = " VOCÊ COMEÇA ESSA PARTIDA";
-            chooisePlayer();
-            start();
+        switch (chooise) {
+            case 0:
+                check = true;
+                break;
+
+            case 1:
+                hashContrller.deleteAll();
+                mensage = " VOCÊ COMEÇA ESSA PARTIDA";
+                chooisePlayer();
+                start();
+
+                break;
+
+            case 2:
+                System.out.println("________________________________");
+                hashContrller.scoreboard();
+                hashContrller.deleteAll();
+                mensage = " VOCÊ COMEÇA ESSA PARTIDA";
+                confirm();
+                break;
+
+            default:
+                System.out.println("ESCOLHA SOMENTE OS 3 NUMEROS MOSTRADOS");
+                break;
         }
-        check = true;
+
     }
 
 }

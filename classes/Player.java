@@ -3,7 +3,7 @@ package com.hash.classes;
 public class Player {
     private String name ;
     private String sinal ;
-    private int victorys;
+    private int victorys = 0;
 
     public Player(String name ){
         this.name = name;
@@ -29,7 +29,7 @@ public class Player {
         return victorys;
     }
     public void setVictorys(int victorys) {
-        this.victorys = victorys;
+        this.victorys += victorys;
     }
 
     @Override
