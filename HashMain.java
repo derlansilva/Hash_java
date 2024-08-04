@@ -20,6 +20,7 @@ public class HashMain {
     }
 
     private static void begin() {
+        
         System.out.print("JOGADOR 1:");
         player1 = scanner.nextLine();
         Player play1 = new Player(player1);
@@ -37,14 +38,19 @@ public class HashMain {
     }
 
     private static void chooisePlayer() {
+
         String p = hashContrller.choosePlayer().getName();
 
         if (p == player1) {
+
             player[0] = player1;
             player[1] = player2;
+
         } else {
+
             player[0] = player2;
             player[1] = player1;
+
         }
 
         start();
@@ -53,13 +59,13 @@ public class HashMain {
     private static void start() {
         int round = 0;
 
-        System.out.println("VAMOS COMERÇAR A PARTIDA");
+        System.out.println("_______VAMOS COMERÇAR A PARTIDA_______");
 
         while (!check) {
             if (round == 9) {
-                System.out.println("________________________________");
+                System.out.println("________________________________\n");
 
-                System.out.println("FIM DE JOGO NINGUEM VENCEU\n");
+                System.out.println("FIM DE JOGO NINGUEM VENCEU");
 
                 confirm();
 
@@ -78,22 +84,31 @@ public class HashMain {
             }
 
             hashContrller.priHash();
+
             System.out.print("ESCOLHA UMA POSIÇÃO  ");
             int position = scanner.nextInt();
-            if (position > 9) {
+
+         
+            if (position > 9 || position == 0) {
+
                 System.out.println("________________________________");
                 System.out.println("SOMENTE VALORES ENTRE 1 E 9");
                 mensage = " ESCOLHA OUTRO VALOR ENTRE 1 E 9";
+
             } else {
+
                 boolean confir = hashContrller.isMarked(position);
+
                 if (confir == false) {
+
                     hashContrller.check(position, namePlayer);
                     round++;
+
                 } else {
                     System.out.println("POSIÇÃO JA ESCOLHIDA\n");
                     mensage = " ESCOLHA OUTRA POSIÇÃO";
                 }
-
+                
                 if (round > 4) {
                     boolean champiom = hashContrller.checkWinner();
                     if (champiom == true) {
@@ -104,12 +119,11 @@ public class HashMain {
                     }
                 }
             }
-
         }
     }
 
     private static void confirm() {
-        
+
         System.out.println("\n");
         System.out.println("________________________________");
         System.out.println("DESEJA RECOMEÇAR A PARTIDA?");

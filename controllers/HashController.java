@@ -14,170 +14,137 @@ public class HashController {
 
     Random random = new Random();
 
-    public HashController(){
+    public HashController() {
         putPositions();
-        
     }
 
-    public Player choosePlayer(){
+    public Player choosePlayer() {
         int index = random.nextInt(players.size());
         return players.get(index);
-        
+
     }
 
-    public void putPlayer(Player player ){
+    public void putPlayer(Player player) {
         players.add(player);
     }
 
-    public boolean isMarked(int index){
-        if(hashs.get(index).getSinal() != null){
+    public boolean isMarked(int index) {
+        if (hashs.get(index).getSinal() != null) {
             return true;
         }
         return false;
     }
 
-    public void putPositions(){
-        for(int i = 0; i<=9; i++ ){
+    public void putPositions() {
+        for (int i = 0; i <= 9; i++) {
             Hash hash = new Hash();
             hashs.add(hash);
         }
     }
 
-    public void priHash(){
+    public void priHash() {
         int index = 0;
-        for(int i = 0 ; i< 3; i++){
-            for(int x = 0 ; x < 3; x++){
-                index ++ ;
+        for (int i = 0; i < 3; i++) {
+            for (int x = 0; x < 3; x++) {
+                index++;
                 System.out.print(hashs.get(index));
-                
+
             }
             System.out.println();
         }
 
     }
 
-    public void check(int index , String name){
-        for(int i = 0 ; i < players.size(); i++){
-            if(players.get(i).getName() == name){
+    public void check(int index, String name) {
+
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).getName() == name) {
                 hashs.get(index).setSinal(players.get(i).getSinal());
             }
         }
         hashs.get(index).setChecked(true);
     }
 
-    public boolean checkWinner(){
-         
-                if(hashs.get(1).getSinal() == hashs.get(2).getSinal() && 
-                hashs.get(1).getSinal() == hashs.get(3).getSinal() 
-                && hashs.get(2).getSinal() == hashs.get(3).getSinal()){
-            
-                    boolean result = getchampion(1);
-                    return result;
-                    
-                }
+    public boolean checkWinner() {
+        String signal1 = hashs.get(1).getSinal();
+        String signal2 = hashs.get(2).getSinal();
+        String signal3 = hashs.get(3).getSinal();
 
-                // SE A SEGUNDA LINHA ESTIVER PREENCHIDA DO 4 AO 6
-                if(hashs.get(4).getSinal() == hashs.get(5).getSinal() && 
-                hashs.get(4).getSinal() == hashs.get(6).getSinal() 
-                && hashs.get(5).getSinal() == hashs.get(6).getSinal()){
+        String signal4 = hashs.get(4).getSinal();
+        String signal5 = hashs.get(5).getSinal();
+        String signal6 = hashs.get(6).getSinal();
 
-                    boolean result = getchampion(4);
-                    return result;
+        String signal7 = hashs.get(7).getSinal();
+        String signal8 = hashs.get(8).getSinal();
+        String signal9 = hashs.get(9).getSinal();
 
-                }
-
-                // SE A SEGUNDA LINHA ESTIVER PREENCHIDA DO 7 AO 9
-                if(hashs.get(7).getSinal() == hashs.get(8).getSinal() && 
-                hashs.get(7).getSinal() == hashs.get(9).getSinal() 
-                && hashs.get(8).getSinal() == hashs.get(9).getSinal()){
-
-                    boolean result = getchampion(7);
-                    return result;
-
-                }
-                
-
-                // VERIFICAR VENCEDORES DAS LINHAS LATERAIS
-                // VENCEDOR DAS LINHAS 1 , 4 , 7
-                if(hashs.get(1).getSinal() == hashs.get(4).getSinal() && 
-                hashs.get(1).getSinal() == hashs.get(7).getSinal() 
-                && hashs.get(4).getSinal() == hashs.get(7).getSinal()){
-
-                    boolean result = getchampion(1);
-                    return result;
-
-                }
-
-                //VENCEDOR DAS LINHAS 2 , 5 , 8
-                if(hashs.get(2).getSinal() == hashs.get(5).getSinal() && 
-                hashs.get(2).getSinal() == hashs.get(8).getSinal() 
-                && hashs.get(5).getSinal() == hashs.get(8).getSinal()){
-
-                    boolean result = getchampion(2);
-                    return result;
-
-                }
-                //VENCEDOR DAS LINHAS 3 , 6 , 9
-
-                if(hashs.get(3).getSinal() == hashs.get(6).getSinal() && 
-                hashs.get(3).getSinal() == hashs.get(9).getSinal() 
-                && hashs.get(6).getSinal() == hashs.get(9).getSinal()){
-
-                    boolean result = getchampion(3);
-                    return result;
-
-                }
-
-
-                // AGORA LOGICA PARA VERIFICAR VENCEDORES NAS DIAGONAIS
-
-
-                //VENCEDOR NAS LINHAS 1 , 5 , 9
-                if(hashs.get(1).getSinal() == hashs.get(5).getSinal() && 
-                hashs.get(1).getSinal() == hashs.get(9).getSinal() 
-                && hashs.get(5).getSinal() == hashs.get(9).getSinal()){
-
-                    boolean result = getchampion(1);
-                    return result;
-
-                }
-                //VENCEDOR DAS LINHAS 3, 5 , 7
-
-                if(hashs.get(3).getSinal() == hashs.get(5).getSinal() && 
-                hashs.get(3).getSinal() == hashs.get(7).getSinal() 
-                && hashs.get(5).getSinal() == hashs.get(7).getSinal()){
-
-                    boolean result = getchampion(3);
-                    return result;
-
-                }
+        //VERIFICAR DE 1 2 3 
+        if(signal1 != null && signal1.equals(signal2) && signal2.equals(signal3)){
+            boolean result = getchampion(1);
+                return result;
+        }
+        //VERIFICA DE 4 5 6 
+        if(signal4 != null && signal4.equals(signal5) && signal5.equals(signal6)){
+            boolean result = getchampion(4);
+                return result;
+        }
+        //VERIFICA 7 8 9 
+        if(signal7 != null && signal7.equals(signal8) && signal8.equals(signal9)){
+            boolean result = getchampion(7);
+                return result;
+        }
+        //VERIFICA 1 4 7 
+        if(signal1 != null && signal1.equals(signal4) && signal4.equals(signal7)){
+            boolean result = getchampion(1);
+                return result;
+        }
+        //VERIFICA 2 5 8
+        if(signal2 != null && signal2.equals(signal5) && signal5.equals(signal8)){
+            boolean result = getchampion(2);
+                return result;
+        }
+        //VERIFICA 3 6 9
+        if(signal3 != null && signal3.equals(signal6) && signal6.equals(signal9)){
+            boolean result = getchampion(3);
+                return result;
+        }
+        //VERIFICA 1 5 9
+        if(signal1 != null && signal1.equals(signal5) && signal5.equals(signal9)){
+            boolean result = getchampion(1);
+                return result;
+        }
+        //VERIFICA 3 5 7 
+        if(signal3 != null && signal3.equals(signal5) && signal5.equals(signal7)){
+            boolean result = getchampion(3);
+                return result;
+        }
+       
         return false;
     }
 
-    public boolean getchampion(int index){
+    public boolean getchampion(int index) {
 
         String signal = hashs.get(index).getSinal();
 
         Player play = findPlayer(signal);
-        System.out.println(play);
-        
+
         System.out.println("________________________________");
-        
-        System.out.println(play.getName()+ " VOCE GANHOU ");
-       
+
+        System.out.println(play.getName() + " VOCE GANHOU ");
+
         return true;
     }
 
-    public void deleteAll(){
+    public void deleteAll() {
         for (Hash hash : hashs) {
             hash.setSinal(null);
             hash.setChecked(false);
         }
     }
 
-    public Player findPlayer(String signal){
+    public Player findPlayer(String signal) {
         for (Player player : players) {
-            if(signal == player.getSinal()){
+            if (signal == player.getSinal()) {
                 player.setVictorys(+1);
                 return player;
             }
@@ -185,9 +152,9 @@ public class HashController {
         return null;
     }
 
-    public void scoreboard(){
+    public void scoreboard() {
         System.out.println("PLACAR");
-        System.out.println(players.get(0).getName() + "  - "+ players.get(0).getVictorys() );
-        System.out.println(players.get(1).getName() + "  - "+ players.get(1).getVictorys() );
+        System.out.println(players.get(0).getName() + "  - " + players.get(0).getVictorys());
+        System.out.println(players.get(1).getName() + "  - " + players.get(1).getVictorys());
     }
 }
